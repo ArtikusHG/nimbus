@@ -1,89 +1,91 @@
-if [ $1 = "powerbutton" ]; then
+#!/bin/bash
+case $1 in
+	"powerbutton")
  activator send libactivator.system.sleepbutton
- echo Power button press simulated.
-fi
-if [ $1 = "home" ]; then
+ echo Power button press simulated
+ ;;
+	"home")
  activator send libactivator.system.homebutton
  echo Home button press simulated.
-fi
-if [ $1 = "open" ]; then
+;;
+	"open")
  activator send $2
  echo App opened.
-fi
-if [ $1 = "settings" ]; then
+;;
+	"settings")
  activator send libactivator.settings.$2
  echo Preference page opened.
-fi
-if [ $1 = "cc" ]; then
+;;
+	"cc")
  activator send libactivator.system.activate-control-center
 echo Control Center opened.
-fi
-if [ $1 = "screenshot" ]; then
+;;
+	"screenshot")
  activator send libactivator.system.take-screenshot
  echo Screenshot saved in gallery.
-fi
-if [ $1 = "increase-audio" ]; then
+;;
+	"increase-audio")
  activator send libactivator.audio.increase-volume
  echo Volume increased.
-fi
-if [ $1 = "decrease-brightness" ]; then
+;;
+	"decrease-brightness")
  activator send libactivator.screen.brightness.decrease
  echo Brightness decreased.
-fi
-if [ $1 = "increase-brightness" ]; then
+;;
+	"increase-brightness")
  activator send libactivator.screen.brightness.increase
  echo Volume increased.
-fi
-if [ $1 = "decrease-audio" ]; then
+;;
+	"decrease-audio")
  activator send libactivator.audio.decrease-volume
  echo Brightness decreased.
-fi
-if [ $1 = "switcher" ]; then
+;;
+	"switcher")
  activator send libactivator.system.activate-switcher
  echo Switcher activated.
-fi
-if [ $1 = "nc" ]; then
+;;
+	"nc")
  activator send libactivator.system.activate-notification-center
  echo Notification Center opened.
-fi
-if [ $1 = "answer-call" ]; then
+;;
+	"answer-call")
  activator send libactivator.phone.answer-call
  echo Call answered.
-fi
-if [ $1 = "decline-call" ]; then
+;;
+	"decline-call")
  activator send libactivator.phone.disconnect-call
  echo Call declined.
-fi
-if [ $1 = "first-homepage" ]; then
+;;
+	"first-homepage")
  activator send libactivator.system.first-springboard-page
  echo First homescreen page opened.
-fi
-if [ $1 = "power-menu" ]; then
+;;
+	"power-menu")
  activator send libactivator.system.power-menu
  echo Power menu opened.
-fi
-if [ $1 = "siri" ]; then
+;;
+	"siri")
  activator send libactivator.system.virtual-assistant
  echo Siri opened.
-fi
-if [ $1 = "clear-switcher" ]; then
+;;
+	"clear-switcher")
  activator send libactivator.system.clear-switcher
  echo App Switcher cleared.
-fi
-if [ $1 = "spotlight" ]; then
+;;
+	"spotlight")
  activator send libactivator.system.spotlight
  echo Spotlight opened.
-fi
-if [ $1 = "safe-mode" ]; then
+;;
+	"safe-mode")
  activator send libactivator.system.safemode
  echo Safe mode activated.
-fi
-if [ $1 = "powerdown" ]; then
+;;
+	"powerdown")
  activator send libactivator.system.powerdown
  echo Device turned off.
-fi
-if [ $1 = "help" ]; then
- echo Usage: nimbus action
+;;
+	*)
+ echo Usage: $0 [ACTION]
  echo List of actions:
  echo powerbutton - simulate power button press.
  echo home - simulate homebutton press.
@@ -102,4 +104,5 @@ if [ $1 = "help" ]; then
  echo spotlight - opens Spotlight.
  echo safe-mode - launches springboard in safe mode.
  echo powerdown - turns off the device.
-fi
+exit 1
+esac
